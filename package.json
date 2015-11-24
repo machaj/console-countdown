@@ -1,0 +1,28 @@
+{
+  "name": "console-countdown",
+  "version": "0.0.1",
+  "description": "A simple console application counting down 25 minutes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/machaj/console-countdown.git"
+  },
+  "keywords": [
+    "console",
+    "ASCII art",
+    "Pomodoro"
+  ],
+  "author": "jan.machy@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/machaj/console-countdown/issues"
+  },
+  "homepage": "https://github.com/machaj/console-countdown#readme",
+  "dependencies": {
+    "ttys": "*"
+  }
+}
