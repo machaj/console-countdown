@@ -1,4 +1,4 @@
-#console-countdown
+# console-countdown
 
 ```
 ████████╗██╗███╗   ███╗███████╗ ██████╗ ██╗   ██╗████████╗
@@ -12,10 +12,11 @@
 A simple console application counting down 25 minutes
 
 
-##Install
+## Install
 
     npm install console-countdown -g
 
-##Usage
+## Usage
 
-   countdown
+    countdown
+

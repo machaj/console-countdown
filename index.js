@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var consoleCountdown = require("./src/ConsoleCountdown.js");
 
 var numbers = {
