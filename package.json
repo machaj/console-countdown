@@ -1,8 +1,11 @@
 {
   "name": "console-countdown",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple console application counting down 25 minutes",
-  "main": "index.js",
+  "preferGlobal": true,
+  "bin": {
+    "countdown": "index.js"
+  },
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
