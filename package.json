@@ -25,6 +25,7 @@
     "url": "https://github.com/machaj/console-countdown/issues"
   },
   "homepage": "https://github.com/machaj/console-countdown#readme",
+  "engines" : { "node" : ">=4.2.2" },
   "dependencies": {
     "ttys": "*"
   }
