@@ -1,0 +1,23 @@
+{
+  "env": {
+	"node": true
+  },
+  "extends": "airbnb/base",
+  "globals": {
+	"describe": true,
+	"it": true
+  },
+  "parserOptions": {
+	"sourceType": "module"
+  },
+  "rules": {
+	"indent": [
+	  "error",
+	  "tab"
+	],
+	"comma-dangle": [
+	  "error",
+	  "never"
+	]
+  }
+}

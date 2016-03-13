@@ -1,74 +1,80 @@
-var ttys = require('ttys');
-var stdout = ttys.stdout;
+import AsciiNumbers from 'ascii-numbers';
+import defaultFont from 'ascii-numbers/fonts/ANSI_Shadow';
+import moment from 'moment';
+import ttys from 'ttys';
 
-function ConsoleCountdown() {
-	var config = {
-		timer: 25,
-		interval: 60000,
-		numbers: null,
-		timeoutText: null,
-		emptyLine: '\n\n\n\n\n\n'
-	};
+const stdout = ttys.stdout;
+const defaultConfig = {
+	font: defaultFont,
+	interval: 1000,
+	minDigits: null,
+	showStartTime: false,
+	timeFormat: 'HH:mm:ss',
+	timer: 25,
+	timeoutText: [
+		'████████╗██╗███╗   ███╗███████╗ ██████╗ ██╗   ██╗████████╗',
+		'╚══██╔══╝██║████╗ ████║██╔════╝██╔═══██╗██║   ██║╚══██╔══╝',
+		'   ██║   ██║██╔████╔██║█████╗  ██║   ██║██║   ██║   ██║',
+		'   ██║   ██║██║╚██╔╝██║██╔══╝  ██║   ██║██║   ██║   ██║',
+		'   ██║   ██║██║ ╚═╝ ██║███████╗╚██████╔╝╚██████╔╝   ██║',
+		'   ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝ ╚═════╝  ╚═════╝    ╚═╝'
+	]
+};
+let asciiNumbers;
 
-	function cursorUp (i) {
-		var _i = i || 1;
+function cursorUp(i) {
+	let _i = i || 1;
 
-		if (_i > 0) {
-			while(_i--) {
-				stdout.write('\033[K\033[1A\r');
-			}
+	if (_i > 0) {
+		while (_i--) {
+			stdout.write('\x1B[K\x1B[1A\r');
 		}
-	}
-
-	function digitsLine(firstDigit, secondDigit, prefix) {
-		var _prefix = prefix || '';
-		var output = [];
-		for (var i = 0; i < 6; i++) {
-			output.push(_prefix + config.numbers[firstDigit][i] + ' ' + config.numbers[secondDigit][i]);
-		}
-		return output.join('\n');
-	}
-
-	function printNumber(number, prefix) {
-		var _number = typeof number === 'number' ? number.toString() : 'x';
-		var firstDigit = 'x';
-		var secondDigit = _number[0];
-
-		if (_number.length === 2) {
-			firstDigit = _number[0];
-			secondDigit = _number[1];
-		}
-		return digitsLine(firstDigit, secondDigit, prefix);
-	}
-
-	function countDown() {
-		cursorUp(7);
-		if (config.timer > 0) {
-			stdout.write(printNumber(config.timer, '        '));
-			stdout.write('\n\n');
-			config.timer--;
-			setTimeout(() => {
-				countDown();
-			}, config.interval);
-		} else {
-			stdout.write(config.timeoutText.join('\n'));
-			stdout.write('\n\n\n');
-		}
-	}
-
-	var run = function(numbers, timeoutText) {
-		if (numbers && timeoutText) {
-			config.numbers = numbers;
-			config.timeoutText = timeoutText;
-			stdout.write(config.emptyLine);
-			stdout.write('\n\n');
-			countDown();
-		}
-	};
-
-	return {
-		run: run
 	}
 }
 
-module.exports = ConsoleCountdown();
+function countDown(digit, interval, callback) {
+	cursorUp(7);
+	if (digit > 0) {
+		stdout.write(asciiNumbers.getNumber(digit));
+		stdout.write('\n\n');
+		setTimeout(() => {
+			countDown(digit - 1, interval, callback);
+		}, interval);
+	} else {
+		callback();
+	}
+}
+
+function run(task, userConfig = {}) {
+	const config = Object.assign({}, defaultConfig, userConfig);
+	const startTime = moment();
+	asciiNumbers = new AsciiNumbers(config.font, {
+		minDigits: config.minDigits || config.timer.toString().length
+	});
+
+	if (config.showStartTime) {
+		stdout.write(`Started at ${startTime.format(config.timeFormat)}\n`);
+	}
+	if (task) {
+		stdout.write(`Task ${task}\n\n`);
+	}
+
+	stdout.write('\n'.repeat(asciiNumbers.getFontStatistic().height + 2));
+
+	return new Promise((resolve) => {
+		countDown(config.timer, config.interval, () => {
+			stdout.write(config.timeoutText.join('\n'));
+			stdout.write('\n\n\n');
+
+			resolve({
+				task,
+				startTime: startTime.toDate(),
+				endTime: moment().toDate()
+			});
+		});
+	});
+}
+
+export default {
+	run
+};
