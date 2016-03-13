@@ -1,6 +1,6 @@
 {
   "name": "console-countdown",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A simple console application counting down 25 minutes",
   "preferGlobal": true,
   "bin": {
