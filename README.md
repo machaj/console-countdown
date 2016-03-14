@@ -1,4 +1,6 @@
 # console-countdown
+[![Build Status](https://travis-ci.org/machaj/console-countdown.svg?branch=master)](https://travis-ci.org/machaj/console-countdown)
+[![Coverage Status](https://coveralls.io/repos/github/machaj/console-countdown/badge.svg?branch=master)](https://coveralls.io/github/machaj/console-countdown?branch=master)
 
 ```
 ████████╗██╗███╗   ███╗███████╗ ██████╗ ██╗   ██╗████████╗

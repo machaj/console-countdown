@@ -6,7 +6,7 @@ import ttys from 'ttys';
 const stdout = ttys.stdout;
 const defaultConfig = {
 	font: defaultFont,
-	interval: 1000,
+	interval: 60000,
 	minDigits: null,
 	showStartTime: false,
 	timeFormat: 'HH:mm:ss',
