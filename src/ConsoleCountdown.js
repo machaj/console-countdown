@@ -67,6 +67,7 @@ class ConsoleCountdown {
 			return false;
 		}
 
+		this.running = true;
 		this.task = task;
 
 		if (this.config.showStartTime) {
@@ -79,10 +80,12 @@ class ConsoleCountdown {
 				this._countDown(this.config.timer, this.config.interval, () => {
 					this.config.stdout.write(this.config.timeoutText.join('\n'));
 					this.config.stdout.write('\n\n\n');
+					this.running = false;
 					resolve(this._getResult());
 				});
 			}),
 			killSwitch: () => {
+				this.running = true;
 				clearTimeout(this.timeoutId);
 				return this._getResult();
 			}
