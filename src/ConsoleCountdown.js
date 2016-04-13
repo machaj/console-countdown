@@ -4,6 +4,7 @@ import moment from 'moment';
 import ttys from 'ttys';
 
 const defaultConfig = {
+	displayTimeoutText: true,
 	font: defaultFont,
 	interval: 60000,
 	minDigits: 4,
@@ -28,10 +29,11 @@ class ConsoleCountdown {
 		this.asciiNumbers = new AsciiNumbers(this.config.font, {
 			minDigits: this.config.minDigits || this.config.timer.toString().length
 		});
+		this.fontHeight = this.asciiNumbers.getFontStatistic().height;
 	}
 
 	_countDown(digit, delay, callback) {
-		this._cursorUp(7);
+		this._cursorUp(this.fontHeight + 1);
 		if (digit > 0) {
 			this.config.stdout.write(this.asciiNumbers.getNumber(digit));
 			this.config.stdout.write('\n\n');
@@ -53,9 +55,10 @@ class ConsoleCountdown {
 		}
 	}
 
-	_getResult() {
+	_getResult(status) {
 		return {
 			task: this.task,
+			status,
 			startTime: this.startTime.toDate(),
 			endTime: moment().toDate()
 		};
@@ -73,21 +76,25 @@ class ConsoleCountdown {
 		if (this.config.showStartTime) {
 			this.config.stdout.write(`Started at ${this.startTime.format(this.config.timeFormat)}\n`);
 		}
-		this.config.stdout.write('\n'.repeat(this.asciiNumbers.getFontStatistic().height + 2));
+		this.config.stdout.write('\n'.repeat(this.fontHeight + 2));
 
 		return {
 			promise: new Promise((resolve) => {
 				this._countDown(this.config.timer, this.config.interval, () => {
-					this.config.stdout.write(this.config.timeoutText.join('\n'));
+					if (this.config.displayTimeoutText) {
+						this.config.stdout.write(this.config.timeoutText.join('\n'));
+					} else {
+						this.config.stdout.write(this.asciiNumbers.getNumber(0));
+					}
 					this.config.stdout.write('\n\n\n');
 					this.running = false;
-					resolve(this._getResult());
+					resolve(this._getResult('ok'));
 				});
 			}),
 			killSwitch: () => {
 				this.running = true;
 				clearTimeout(this.timeoutId);
-				return this._getResult();
+				return this._getResult('void');
 			}
 		};
 	}
