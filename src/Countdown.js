@@ -22,7 +22,7 @@ const defaultConfig = {
 	]
 };
 
-class ConsoleCountdown {
+class Countdown {
 	constructor(userConfig = {}) {
 		this.config = Object.assign({}, defaultConfig, userConfig);
 		this.startTime = moment();
@@ -66,7 +66,7 @@ class ConsoleCountdown {
 
 	run(task = null) {
 		if (this.running) {
-			this.config.stdout.write('ConsoleCountdown is already running!');
+			this.config.stdout.write('Countdown is already running!');
 			return false;
 		}
 
@@ -100,4 +100,4 @@ class ConsoleCountdown {
 	}
 }
 
-export default ConsoleCountdown;
+export default Countdown;

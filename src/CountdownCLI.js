@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-import ConsoleCountdown from './ConsoleCountdown';
+import Countdown from './Countdown';
+import coundownExportCSV from './CountdownExportCSV';
 import commander from 'commander';
-import fs from 'fs';
-import stringify from 'csv-stringify';
-
 
 commander
 	.version(process.env.npm_package_version)
@@ -22,20 +20,17 @@ if (commander.hideEndText) consoleConfig.displayTimeoutText = false;
 if (commander.interval) consoleConfig.interval = commander.interval;
 if (commander.startTime) consoleConfig.showStartTime = true;
 
-const consoleCountdown = new ConsoleCountdown(consoleConfig).run(commander.args[0]);
+const consoleCountdown = new Countdown(consoleConfig).run(commander.args[0]);
 
-if (commander.outputFile) {
-	consoleCountdown.promise.then(
-		(result) => {
-			stringify([result], { delimiter: ';' }, (err, output) => {
-				const fileName = commander.outputFile;
-				fs.appendFile(`${fileName}`, output, () => {});
-			});
-		}
-	);
-}
+
+consoleCountdown.promise.then(
+	(result) => {
+		coundownExportCSV(commander.outputFile, result);
+	}
+);
 
 process.on('SIGINT', () => {
-	consoleCountdown.killSwitch();
+	const result = consoleCountdown.killSwitch();
+	coundownExportCSV(commander.outputFile, result);
 });
 

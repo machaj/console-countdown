@@ -1,6 +1,6 @@
 import expect from 'expect';
 
-import ConsoleCountdown from '../src/ConsoleCountdown';
+import Countdown from '../src/Countdown';
 import simpleFont from 'ascii-numbers/fonts/simple';
 
 class TestStdout {
@@ -17,11 +17,11 @@ class TestStdout {
 	}
 }
 
-describe('Default ConsoleCountdown', () => {
+describe('Default Countdown', () => {
 	describe('Basic run for 2.5 seconds', () => {
 		it('should return run object', function (done) { // eslint-disable-line func-names
 			this.timeout(3000);
-			const countdown = new ConsoleCountdown({
+			const countdown = new Countdown({
 				interval: 500,
 				timer: 5
 			});
@@ -39,19 +39,19 @@ describe('Default ConsoleCountdown', () => {
 	describe('Check if is possible run two countdowns from same instance', () => {
 		it('should return false and print error', () => {
 			const stdout = new TestStdout();
-			const countdown = new ConsoleCountdown({ stdout, interval: 500, timer: 5 });
+			const countdown = new Countdown({ stdout, interval: 500, timer: 5 });
 			countdown.run('Test 1');
 
 			expect(countdown.run('Test 2')).toBe(false);
 			const output = stdout.getOutput();
-			expect(output[output.length - 1]).toBe('ConsoleCountdown is already running!');
+			expect(output[output.length - 1]).toBe('Countdown is already running!');
 		});
 	});
 
 	describe('Disable timeout message', () => {
 		it('should print 0 instead of timeout', function (done) { // eslint-disable-line
 			const stdout = new TestStdout();
-			const countdown = new ConsoleCountdown(
+			const countdown = new Countdown(
 				{
 					stdout,
 					interval: 100,
@@ -78,7 +78,7 @@ describe('Default ConsoleCountdown', () => {
 	describe('Stopping countdown by killswitch', () => {
 		it('should change result status', function (done) { // eslint-disable-line
 			const stdout = new TestStdout();
-			const countdown = new ConsoleCountdown(
+			const countdown = new Countdown(
 				{
 					stdout,
 					interval: 100,
