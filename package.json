@@ -34,6 +34,8 @@
   "homepage": "https://github.com/machaj/console-countdown#readme",
   "dependencies": {
     "ascii-numbers": "^1.0.2",
+    "commander": "^2.9.0",
+    "csv-stringify": "^1.0.2",
     "moment": "^2.11.2",
     "ttys": "*"
   },
