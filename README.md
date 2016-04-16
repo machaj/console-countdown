@@ -22,6 +22,21 @@ A simple console application counting down 25 minutes
 
     countdown
 
+
+  Usage: CountdownCLI [options]
+
+  Options:
+
+    -h, --help                output usage information
+    -V, --version             output the version number
+    -c, --cycle-count <n>     number of countdown intervals (default 25)
+    -d, --digits <n>          number of places for digits (default 4)
+    -e, --hide-end-text       disable timeout text when time expires
+    -i, --interval <n>        set a length of time interval in millis (default 60 sec)
+    -o, --output-file [name]  file to append output
+    -s, --start-time          shows timer start time
+
+
 ## Fonts
 
 http://patorjk.com/software/taag/#p=display&h=1&v=3&f=Small&t=Pomodoro
