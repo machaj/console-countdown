@@ -46,10 +46,10 @@ class Countdown {
 	}
 
 	_cursorUp(i) {
-		let _i = i || 1;
+		let iteration = i || 1;
 
-		if (_i > 0) {
-			while (_i--) {
+		if (iteration > 0) {
+			while (iteration--) {
 				this.config.stdout.write('\x1B[K\x1B[1A\r');
 			}
 		}

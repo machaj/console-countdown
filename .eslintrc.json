@@ -18,6 +18,10 @@
 	"comma-dangle": [
 	  "error",
 	  "never"
+	],
+	"no-underscore-dangle": [
+	  "error",
+	  { "allowAfterThis": true }
 	]
   }
 }
