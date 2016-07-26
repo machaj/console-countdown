@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/machaj/console-countdown.svg?branch=master)](https://travis-ci.org/machaj/console-countdown)
 [![Coverage Status](https://coveralls.io/repos/github/machaj/console-countdown/badge.svg?branch=master)](https://coveralls.io/github/machaj/console-countdown?branch=master)
 
-![console-countdown demo](https://github.com/machaj/console-countdown/demo.gif "console-countdown demo")
+![console-countdown demo](https://raw.githubusercontent.com/machaj/console-countdown/master/demo.gif "console-countdown demo")
 
 A simple console application counting down 25 minutes
 
