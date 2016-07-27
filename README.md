@@ -4,8 +4,6 @@
 
 ![console-countdown demo](https://raw.githubusercontent.com/machaj/console-countdown/master/demo.gif "console-countdown demo")
 
-A simple console application counting down 25 minutes
-
 
 ## Install
 
