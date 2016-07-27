@@ -11,14 +11,51 @@ A simple console application counting down 25 minutes
 
     npm install console-countdown -g
 
+
 ## Usage
 
-    countdown
+This application has been developed for the needs of [Pomodoro technique](http://pomodorotechnique.com/). Therefore, the default option is 25 minutes countdown.
+
+```bash
+countdown
+```
+
+You can change default number of cycles by option `-c`. To change time interval length you can use `-i`.
+
+```bash
+# Counting down five seconds:
+countdown -c 5 -i 1000
+```
 
 
-  Usage: CountdownCLI [options]
+### Track your time
 
-  Options:
+You can use option `-o` to define output file if you want to store data from your Pomodoro time tracking. Time records are appended to this file.
+
+```bash
+countdown -o pomodoro.csv "My first task"
+```
+
+Time record format is:
+
+    task;status;start time;end time
+    
+Where :
+
+* **task** is parameter without a switch option which was passed to `countdown`.
+* **status** is sign if the `countdown` was terminated by pressing `Ctrl+C`.
+
+
+### Playing a sound at timeout
+
+This function is not implemented but it can be achieved it different way. For example by defining an alias.
+
+```bash
+alias coutndown=`countdown "${@}" && mplayer --really-quiet ~/beep.mp3`
+```
+
+
+### List of all options
 
     -h, --help                output usage information
     -V, --version             output the version number
