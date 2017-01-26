@@ -52,7 +52,7 @@
     "eslint-plugin-react": "^6.0.0",
     "expect": "^1.14.0",
     "mocha": "^3.0.0",
-    "nyc": "^8.1.0"
+    "nyc": "^10.1.2"
   },
   "babel": {
     "presets": [
