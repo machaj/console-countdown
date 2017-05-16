@@ -1,4 +1,6 @@
 # console-countdown
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/machaj/console-countdown.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/machaj/console-countdown.svg?branch=master)](https://travis-ci.org/machaj/console-countdown)
 [![Coverage Status](https://coveralls.io/repos/github/machaj/console-countdown/badge.svg?branch=master)](https://coveralls.io/github/machaj/console-countdown?branch=master)
 
