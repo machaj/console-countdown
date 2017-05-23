@@ -1,7 +1,7 @@
 #!/usr/bin/env node
+import commander from 'commander';
 import Countdown from './Countdown';
 import coundownExportCSV from './CountdownExportCSV';
-import commander from 'commander';
 
 commander
 	.version(process.env.npm_package_version)

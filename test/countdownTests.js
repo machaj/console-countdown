@@ -1,7 +1,7 @@
 import expect from 'expect';
 
-import Countdown from '../src/Countdown';
 import simpleFont from 'ascii-numbers/fonts/simple';
+import Countdown from '../src/Countdown';
 
 class TestStdout {
 	constructor() {

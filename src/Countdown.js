@@ -49,8 +49,9 @@ class Countdown {
 		let iteration = i || 1;
 
 		if (iteration > 0) {
-			while (iteration--) {
+			while (iteration) {
 				this.config.stdout.write('\x1B[K\x1B[1A\r');
+				iteration -= 1;
 			}
 		}
 	}

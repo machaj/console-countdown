@@ -1,27 +1,30 @@
 {
   "env": {
-	"node": true
+    "node": true
   },
   "extends": "airbnb/base",
   "globals": {
-	"describe": true,
-	"it": true
+    "describe": true,
+    "it": true
   },
   "parserOptions": {
-	"sourceType": "module"
+    "sourceType": "module"
   },
   "rules": {
-	"indent": [
-	  "error",
-	  "tab"
-	],
-	"comma-dangle": [
-	  "error",
-	  "never"
-	],
-	"no-underscore-dangle": [
-	  "error",
-	  { "allowAfterThis": true }
-	]
+    "indent": [
+      "error",
+      "tab"
+    ],
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allowAfterThis": true
+      }
+    ],
+    "no-tabs": 0
   }
 }
