@@ -23,11 +23,9 @@ if (commander.startTime) consoleConfig.showStartTime = true;
 const consoleCountdown = new Countdown(consoleConfig).run(commander.args[0]);
 
 
-consoleCountdown.promise.then(
-	(result) => {
-		coundownExportCSV(commander.outputFile, result);
-	}
-);
+consoleCountdown.promise.then((result) => {
+	coundownExportCSV(commander.outputFile, result);
+});
 
 process.on('SIGINT', () => {
 	const result = consoleCountdown.killSwitch();
