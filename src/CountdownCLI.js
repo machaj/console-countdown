@@ -31,4 +31,3 @@ process.on('SIGINT', () => {
 	const result = consoleCountdown.killSwitch();
 	coundownExportCSV(commander.outputFile, result);
 });
-
